@@ -30,7 +30,7 @@
 #import "UIView+JHRedDot.h"
 
 @interface JHRedDot()
-@property (nonatomic,  unsafe_unretained) UIView *superView;
+@property (nonatomic,    weak) UIView *superView;
 @property (nonatomic,  strong) JHRedDotConfig *config;
 @end
 
@@ -61,12 +61,17 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self update];
         });
+    }else{
+        @try {
+            [_superView removeObserver:self forKeyPath:@"frame"];
+            [_superView removeObserver:self forKeyPath:@"bounds"];
+            _superView = nil;
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
     }
-}
-
-- (void)dealloc{
-    [_superView removeObserver:self forKeyPath:@"frame"];
-    [_superView removeObserver:self forKeyPath:@"bounds"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
