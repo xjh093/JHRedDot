@@ -39,5 +39,6 @@ Red dot. 小红点
 
 
 # Logs
+2. Fix bug.(2020-03-03)
 1. Upload.(2018-09-03)
 
