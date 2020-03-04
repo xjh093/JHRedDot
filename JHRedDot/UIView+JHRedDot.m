@@ -30,7 +30,7 @@
 #import "UIView+JHRedDot.h"
 
 @interface JHRedDot()
-@property (nonatomic,    weak) UIView *superView;
+@property (nonatomic,  unsafe_unretained) UIView *superView;
 @property (nonatomic,  strong) JHRedDotConfig *config;
 @end
 
