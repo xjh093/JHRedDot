@@ -39,6 +39,8 @@ Red dot. 小红点
 
 
 # Logs
+3. Fix bug.(2020-03-04)
+- use 'unsafe_unretained' not 'weak' when observe a object's property in iOS 9.
 2. Fix bug.(2020-03-03)
 1. Upload.(2018-09-03)
 
