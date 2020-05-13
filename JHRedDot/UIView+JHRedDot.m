@@ -84,7 +84,7 @@
 - (void)update
 {
     CGRect frame = self.frame;
-    frame.origin.x = CGRectGetWidth(self.superview.frame)-_config.size.width-_config.offsetX;
+    frame.origin.x = CGRectGetWidth(self.superview.frame)-_config.size.width+_config.offsetX;
     frame.origin.y = _config.offsetY;
     self.frame = frame;
     
@@ -95,11 +95,12 @@
         CGRect imageRect = [button imageRectForContentRect:button.bounds];
 
         CGFloat maxX = MAX(CGRectGetMaxX(titleRect), CGRectGetMaxX(imageRect));
+        CGFloat minY = MIN(CGRectGetMinY(titleRect), CGRectGetMinY(imageRect));
         
-        if (maxX > 0) {
-            frame.origin.x = maxX - _config.offsetX;
-            self.frame = frame;
-        }
+        frame.origin.x = maxX + _config.offsetX;
+        frame.origin.y = minY + _config.offsetY;
+        
+        self.frame = frame;
     }
 }
 
